@@ -2,6 +2,7 @@ package de.codecentric.psd.worblehat.web.controller;
 
 import de.codecentric.psd.worblehat.domain.BookService;
 import de.codecentric.psd.worblehat.web.formdata.ReturnAllBooksFormData;
+import de.codecentric.psd.worblehat.web.formdata.ReturnSingleBookFormData;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -16,7 +17,7 @@ import javax.validation.Valid;
  * Controller class for the
  */
 @Controller
-@RequestMapping("/returnAllBooks")
+@RequestMapping("/returnSingleBook")
 public class ReturnSingleBookController {
 
 	private BookService bookService;
@@ -28,17 +29,17 @@ public class ReturnSingleBookController {
 
 	@RequestMapping(method = RequestMethod.GET)
 	public void prepareView(ModelMap modelMap) {
-		modelMap.put("returnAllBookFormData", new ReturnAllBooksFormData());
+		modelMap.put("returnSingleBookFormData", new ReturnSingleBookFormData());
 	}
 
 	@RequestMapping(method = RequestMethod.POST)
-	public String returnAllBooks(
-			@ModelAttribute("returnAllBookFormData") @Valid ReturnAllBooksFormData formData,
+	public String returnSingleBook(
+			@ModelAttribute("returnAllBookFormData") @Valid ReturnSingleBookFormData formData,
 			BindingResult result) {
 		if (result.hasErrors()) {
-			return "returnAllBooks";
+			return "returnSingleBook";
 		} else {
-			bookService.returnAllBooksByBorrower(formData.getEmailAddress());
+			bookService.returnAllBooksByBorrower(formData.getIsbn(), formData.getEmailAddress());
 			return "home";
 		}
 	}

@@ -11,6 +11,7 @@ import java.util.Set;
 public interface BookService {
 
 	void returnAllBooksByBorrower(String string);
+	void returnBookByBorrowerAndIsbn(String borrower, String isbn);
 
 	Optional<Borrowing> borrowBook(String isbn, String borrower);
 
