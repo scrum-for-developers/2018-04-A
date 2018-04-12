@@ -56,5 +56,11 @@
 			</action>	
 
 		</release>
+		<release version="1.4" date="2018-04-12"
+				 description="Release avoiding books with same ISBN and different version">
+			<action dev="1elf!" type="fix">
+				added check for books with same ISBN and different editon
+			</action>
+		</release>
 	</body>
 </document>
