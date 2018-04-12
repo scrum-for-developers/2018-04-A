@@ -92,7 +92,7 @@ public class InsertBookControllerTest {
 
     private void setupFormData() {
         bookDataFormData.setTitle(TEST_BOOK.getTitle());
-        bookDataFormData.setTitle(TEST_BOOK.getDescription());
+        bookDataFormData.setDescription(TEST_BOOK.getDescription());
         bookDataFormData.setAuthor(TEST_BOOK.getAuthor());
         bookDataFormData.setEdition(TEST_BOOK.getEdition());
         bookDataFormData.setIsbn(TEST_BOOK.getIsbn());
