@@ -13,6 +13,9 @@ public class BookDataFormData {
 	@NotEmpty(message = "{empty.bookDataFormData.title}")
 	private String title;
 
+	@NotEmpty(message = "{empty.bookDataFormData.description}")
+	private String description;
+	
 	@NotEmpty(message = "{empty.bookDataFormData.edition}")
 	@Numeric(message = "{notvalid.bookDataFormData.edition}")
 	private String edition;
@@ -44,6 +47,15 @@ public class BookDataFormData {
 	public void setIsbn(String isbn) {
 		this.isbn = isbn;
 	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
 
 	public String getAuthor() {
 		return author;
