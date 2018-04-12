@@ -24,6 +24,7 @@
 				Return all borrowed books by one member.
 			</action>
 		</release>
+
 		<release version="1.2" date="2018-04-12"
 			description="Release with much improved functionality">
 			<action dev="1elf!" type="update">
@@ -53,6 +54,7 @@
 			<action dev="1elf!" type="add">
 				 🦄 - Feature
 			</action>	
+
 		</release>
 	</body>
 </document>

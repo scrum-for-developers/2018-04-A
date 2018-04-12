@@ -13,12 +13,15 @@ public class BookDataFormData {
 	@NotEmpty(message = "{empty.bookDataFormData.title}")
 	private String title;
 
+	@NotEmpty(message = "{empty.bookDataFormData.description}")
+	private String description;
+	
 	@NotEmpty(message = "{empty.bookDataFormData.edition}")
-	@Numeric(message = "{notvalid.bookDataFormData.edition}")
+	@Numeric(message = "{notnumeric.bookDataFormData.edition}")
 	private String edition;
 
 	@NotEmpty(message = "{empty.bookDataFormData.yearOfPublication}")
-	@Numeric(message = "{notvalid.bookDataFormData.yearOfPublication}")
+	@Numeric(message = "{notnumeric.bookDataFormData.yearOfPublication}")
 	@Length(message = "{invalid.length.bookDataFormData.yearOfPublication}", min = 4, max = 4)
 	private String yearOfPublication;
 
@@ -44,6 +47,15 @@ public class BookDataFormData {
 	public void setIsbn(String isbn) {
 		this.isbn = isbn;
 	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
 
 	public String getAuthor() {
 		return author;

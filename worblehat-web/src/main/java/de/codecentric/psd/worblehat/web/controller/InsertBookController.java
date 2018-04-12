@@ -45,7 +45,9 @@ public class InsertBookController {
 		if (result.hasErrors()) {
 			return "insertBooks";
 		} else {
-			Optional<Book> book = bookService.createBook(bookDataFormData.getTitle(), bookDataFormData.getAuthor(),
+			
+			bookDataFormData.setDescription(bookDataFormData.getDescription().replaceAll("\n", "<br/>"));
+			Optional<Book> book = bookService.createBook(bookDataFormData.getTitle(), bookDataFormData.getDescription(), bookDataFormData.getAuthor(),
 					bookDataFormData.getEdition(), bookDataFormData.getIsbn(),
 					Integer.parseInt(bookDataFormData.getYearOfPublication()));
 			if (book.isPresent()) {

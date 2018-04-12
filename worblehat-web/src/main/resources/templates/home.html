@@ -1,10 +1,10 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-<title>Worblehat Bookmanager</title>
+<title>&#129412; Worblehat Bookmanager</title>
 </head>
 <body>
-<h1 id="welcome_heading"><span th:text="${@environment.getProperty('spring.application.name')}"></span></h1>
+<h1 id="welcome_heading">&#129412; <span th:text="${@environment.getProperty('spring.application.name')}"></span></h1>
 
 <ul>
     <li><a th:href="@{/bookList}">Show all Books</a></li>
@@ -12,5 +12,6 @@
     <li><a th:href="@{/borrow}">Borrow Book</a></li>
     <li><a th:href="@{/returnAllBooks}">Return all Books</a></li>
 </ul>
+<p>Version: <span th:text="${buildVersion}"></span></p>
 </body>
 </html>
