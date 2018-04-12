@@ -2,6 +2,9 @@ package de.codecentric.psd.worblehat.domain;
 
 import org.joda.time.DateTime;
 
+import de.codecentric.psd.worblehat.util.WorblehatConstants;
+import de.codecentric.psd.worblehat.util.DateUtil;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
@@ -55,5 +58,17 @@ public class Borrowing implements Serializable {
 
 	public Book getBorrowedBook() {
 		return borrowedBook;
+	}
+
+	public Date getBorrowDate() {
+		return borrowDate;
+	}
+
+	public void setBorrowDate(Date borrowDate) {
+		this.borrowDate = borrowDate;
+	}
+	
+	public Date getReturnDate() {
+		return DateUtil.addDays(borrowDate, WorblehatConstants.ALLOWED_BORROWTIME_IN_DAYS);
 	}
 }

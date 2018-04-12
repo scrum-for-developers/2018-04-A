@@ -17,6 +17,8 @@ public interface BookService {
 	Set<Book> findBooksByIsbn(String isbn);
 
 	List<Book> findAllBooks();
+	
+	List<Book> findAllBooksByBorrowDate();
 
 	Optional<Book> createBook(String title, String author, String edition, String isbn, int yearOfPublication);
 

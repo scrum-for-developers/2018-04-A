@@ -13,4 +13,14 @@ public interface BorrowingRepository extends JpaRepository<Borrowing, Long> {
 
     @Query("SELECT b from Borrowing b WHERE b.borrowerEmailAddress = :borrowerEmailAddress")
     List<Borrowing> findBorrowingsByBorrower(@Param("borrowerEmailAddress") String borrowerEmailAddress);
+
+    @Query("SELECT b from Borrowing b WHERE b.borrowerEmailAddress = :borrowerEmailAddress ORDER BY b.borrowDate ASC")
+    List<Borrowing> findBorrowingsByBorrowerOrderedByDateASC(@Param("borrowerEmailAddress") String borrowerEmailAddress);
+   
+    @Query("SELECT b from Borrowing b WHERE b.borrowerEmailAddress = :borrowerEmailAddress ORDER BY b.borrowDate DESC")
+    List<Borrowing> findBorrowingsByBorrowerOrderedByDateDESC(@Param("borrowerEmailAddress") String borrowerEmailAddress);
+ 
+    @Query("SELECT b from Borrowing b ORDER BY b.borrowDate ASC")
+    List<Borrowing> findBorrowingsOrderedByDateASC();
+   
 }

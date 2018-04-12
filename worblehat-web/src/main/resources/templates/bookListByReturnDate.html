@@ -8,23 +8,15 @@
 	<thead>
 		<tr>
 			<th>Title</th>
-			<th>Author</th>
-			<th>Year</th>
-			<th>Edition</th>
 			<th>ISBN</th>
-			<th>Borrower</th>
-			<th>Borrowdate</th>
+			<th>ReturnDate</th>
 		</tr>
 	</thead>
 	<tbody>
 		<tr th:each="book : ${books}">
 			<td th:text="${book.title}">Harry Potter</td>
-			<td th:text="${book.author}">J.K. Rowling</td>
-			<td th:text="${book.yearOfPublication}">2002</td>
-			<td th:text="${book.edition}">1st</td>
 			<td th:text="${book.isbn}">123456</td>
-			<td th:text="${book?.borrowing?.borrowerEmailAddress}">someone@codecentric.de</td>
-			<td th:text="${book?.borrowing?.borrowDate}">01.01.2020</td>
+			<td th:text="${book?.borrowing?.returnDate}">01.01.2020</td>
 		</tr>
 	</tbody>
 	</table>
