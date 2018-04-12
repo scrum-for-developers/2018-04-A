@@ -13,12 +13,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 public class NavigationController {
 
-	@Value("${build.version}")
-	private String buildVersion;
-
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String home(ModelMap modelMap) {
-		modelMap.addAttribute("buildVersion", buildVersion);
+	public String home() {
 		return "home";
 	}
 
