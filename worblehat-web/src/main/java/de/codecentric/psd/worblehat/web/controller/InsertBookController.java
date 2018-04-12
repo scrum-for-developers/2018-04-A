@@ -6,7 +6,6 @@ import de.codecentric.psd.worblehat.web.formdata.BookDataFormData;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
@@ -29,9 +28,6 @@ public class InsertBookController {
 
 	private BookService bookService;
 
-	@Value("${build.version}")
-	private String buildVersion;
-
 	@Autowired
 	public InsertBookController(BookService bookService) {
 		this.bookService = bookService;
@@ -40,7 +36,6 @@ public class InsertBookController {
 	@RequestMapping(method = RequestMethod.GET)
 	public void setupForm(ModelMap modelMap) {
 		modelMap.put("bookDataFormData", new BookDataFormData());
-		modelMap.addAttribute("buildVersion", buildVersion);
 	}
 
 	@RequestMapping(method = RequestMethod.POST)
