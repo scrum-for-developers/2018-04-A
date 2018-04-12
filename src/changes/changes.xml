@@ -39,5 +39,20 @@
 				 version information
 			</action>	
 		</release>
+		<release version="1.3" date="2018-04-12"
+			description="Release with much improved functionality">
+			<action dev="1elf!" type="fix">
+				Acceptance tests
+			</action>
+			<action dev="1elf!" type="fix">
+				 Dependencies fixed
+			</action>
+			<action dev="1elf!" type="fix">
+				 Version Info on Start page
+			</action>
+			<action dev="1elf!" type="add">
+				 🦄 - Feature
+			</action>	
+		</release>
 	</body>
 </document>
