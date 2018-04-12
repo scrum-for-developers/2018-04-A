@@ -3,6 +3,7 @@ package de.codecentric.psd.worblehat.web.controller;
 import de.codecentric.psd.worblehat.domain.BookService;
 import de.codecentric.psd.worblehat.web.formdata.ReturnAllBooksFormData;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
@@ -21,6 +22,9 @@ public class ReturnAllBooksController {
 
 	private BookService bookService;
 
+	@Value("${build.version}")
+	private String buildVersion;
+
 	@Autowired
 	public ReturnAllBooksController(BookService bookService) {
 		this.bookService = bookService;
@@ -29,6 +33,7 @@ public class ReturnAllBooksController {
 	@RequestMapping(method = RequestMethod.GET)
 	public void prepareView(ModelMap modelMap) {
 		modelMap.put("returnAllBookFormData", new ReturnAllBooksFormData());
+		modelMap.addAttribute("buildVersion", buildVersion);
 	}
 
 	@RequestMapping(method = RequestMethod.POST)

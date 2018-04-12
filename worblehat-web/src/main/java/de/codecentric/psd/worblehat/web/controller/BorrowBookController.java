@@ -8,6 +8,7 @@ import de.codecentric.psd.worblehat.web.formdata.BookBorrowFormData;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.collections.SetUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.ModelMap;
@@ -31,6 +32,9 @@ public class BorrowBookController {
 
 	private BookService bookService;
 
+	@Value("${build.version}")
+	private String buildVersion;
+
 	@Autowired
 	public BorrowBookController(BookService bookService) {
 		this.bookService= bookService;
@@ -39,6 +43,7 @@ public class BorrowBookController {
 	@RequestMapping(method = RequestMethod.GET)
 	public void setupForm(final ModelMap model) {
 		model.put("borrowFormData", new BookBorrowFormData());
+		model.addAttribute("buildVersion", buildVersion);
 	}
 
 	@Transactional
