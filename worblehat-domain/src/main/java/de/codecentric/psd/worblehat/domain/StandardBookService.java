@@ -67,11 +67,12 @@ public class StandardBookService implements BookService {
 
 	@Override
 	public Optional<Book> createBook(@Nonnull String title,
+									 @Nonnull String description,
 									 @Nonnull String author,
 									 @Nonnull String edition,
 									 @Nonnull String isbn,
 									 int yearOfPublication) {
-		Book book = new Book(title, author, edition, isbn, yearOfPublication);
+		Book book = new Book(title, description, author, edition, isbn, yearOfPublication);
 
 		Optional<Book> bookFromRepo = bookRepository.findTopByIsbn(isbn);
 
