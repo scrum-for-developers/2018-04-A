@@ -19,6 +19,7 @@ public class Book implements Serializable {
 	private long id;
 
 	private String title;
+	@Lob
 	private String description;
 	private String author;
 	private String edition;
@@ -42,6 +43,8 @@ public class Book implements Serializable {
 	 * 
 	 * @param title
 	 *            the title
+	 * @param description
+	 *            the description
 	 * @param author
 	 *            the author
 	 * @param edition
@@ -50,14 +53,16 @@ public class Book implements Serializable {
 	 *            the isbn
 	 * @param yearOfPublication
 	 *            the yearOfPublication
-	 */
+	 */	
 	public Book(@Nonnull String title,
-				@Nonnull String author,
-				@Nonnull String edition,
-				@Nonnull String isbn,
-				int yearOfPublication) {
+			@Nonnull String description,
+			@Nonnull String author,
+			@Nonnull String edition,
+			@Nonnull String isbn,
+			int yearOfPublication) {
 		super();
 		this.title = title;
+		this.description = description;
 		this.author = author;
 		this.edition = edition;
 		this.isbn = isbn;
