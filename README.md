@@ -1,4 +1,4 @@
-# Worblehat
+# Worblehat by awesome Team 1elf!
 
 [![Build Status](https://travis-ci.org/scrum-for-developers/worblehat.svg?branch=master)](https://travis-ci.org/scrum-for-developers/worblehat)
 

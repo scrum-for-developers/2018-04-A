@@ -62,5 +62,11 @@
 				added check for books with same ISBN and different editon
 			</action>
 		</release>
+		<release version="1.5" date="2018-04-12"
+				 description="Last and Final PSD Training release">
+			<action dev="1elf!" type="fix">
+				added Borrowing overview 
+			</action>
+		</release>
 	</body>
 </document>

@@ -5,6 +5,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Nonnull;
+
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
@@ -15,6 +19,9 @@ import java.util.Set;
 @Service
 @Transactional
 public class StandardBookService implements BookService {
+	
+	
+	
 
 	public StandardBookService() {
 
@@ -92,6 +99,36 @@ public class StandardBookService implements BookService {
 	public void deleteAllBooks() {
 		borrowingRepository.deleteAll();
 		bookRepository.deleteAll();
+	}
+
+	@Override
+	public List<Book> findAllBooksByBorrowDate() {
+		List<Borrowing> borrowingList =borrowingRepository.findBorrowingsOrderedByDateASC();
+		List<Book> booklist = new ArrayList<Book>();
+		for (Borrowing borrowing : borrowingList) {
+			
+			booklist.add(borrowing.getBorrowedBook());
+		}
+		return booklist;
+	}
+	
+	@Override
+	public List<Book> findAllBooksByBorrowDateAndMail(String mail, Boolean directionDESC) {
+		
+		List<Borrowing> borrowingList = null;
+				
+		if (directionDESC) {
+			borrowingList = borrowingRepository.findBorrowingsByBorrowerOrderedByDateDESC(mail);
+		} else {
+			borrowingList = borrowingRepository.findBorrowingsByBorrowerOrderedByDateASC(mail);
+		}
+				
+		List<Book> booklist = new ArrayList<Book>();
+		for (Borrowing borrowing : borrowingList) {
+			
+			booklist.add(borrowing.getBorrowedBook());
+		}
+		return booklist;
 	}
 
 

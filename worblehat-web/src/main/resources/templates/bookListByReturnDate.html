@@ -4,30 +4,22 @@
 	<title>Show all Books</title>
 </head>
 <body>
+	<h1>Show all borrowings</h1>
 	<table class="bookList">
 	<thead>
 		<tr>
 			<th>Title</th>
-
-			<th>Description</th>
-			<th>Author</th>
-			<th>Year</th>
-			<th>Edition</th>
 			<th>ISBN</th>
-			<th>Borrower</th>
-			<th>Borrowdate</th>
+			<th>ReturnDate</th>
+			<th>Orderer</th>
 		</tr>
 	</thead>
 	<tbody>
 		<tr th:each="book : ${books}">
 			<td th:text="${book.title}">Harry Potter</td>
-			<td th:utext="${book.description}">Description</td>
-			<td th:text="${book.author}">J.K. Rowling</td>
-			<td th:text="${book.yearOfPublication}">2002</td>
-			<td th:text="${book.edition}">1st</td>
 			<td th:text="${book.isbn}">123456</td>
+			<td th:text="${#dates.format(book?.borrowing?.returnDate, 'dd-MM-yyyy')}"></td>
 			<td th:text="${book?.borrowing?.borrowerEmailAddress}">someone@codecentric.de</td>
-			<td th:text="${book?.borrowing?.borrowDate}">01.01.2020</td>
 		</tr>
 	</tbody>
 	</table>

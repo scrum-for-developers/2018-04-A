@@ -17,10 +17,14 @@ public interface BookService {
 	Set<Book> findBooksByIsbn(String isbn);
 
 	List<Book> findAllBooks();
+	
+	List<Book> findAllBooksByBorrowDate();
 
 	Optional<Book> createBook(String title, String description, String author, String edition, String isbn, int yearOfPublication);
 
 	boolean bookExists(String isbn);
 
 	void deleteAllBooks();
+
+	List<Book> findAllBooksByBorrowDateAndMail(String mail, Boolean direction);
 }

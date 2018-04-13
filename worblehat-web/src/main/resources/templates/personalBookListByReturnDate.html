@@ -1,0 +1,27 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<title>Show all personal borrowings</title>
+</head>
+<body>
+	<h1>Show all personal borrowings</h1>
+	<table class="bookList">
+	<thead>
+		<tr>
+			<th>Title</th>
+			<th>ISBN</th>
+			<th>ReturnDate</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr th:each="book : ${books}">
+			<td th:text="${book.title}">Harry Potter</td>
+			<td th:text="${book.isbn}">123456</td>
+			<td th:text="${#dates.format(book?.borrowing?.returnDate, 'dd-MM-yyyy')}"></td>
+		</tr>
+	</tbody>
+	</table>
+	<hr />
+	<a th:href="@{/}">Back to Home</a>
+</body>
+</html>
