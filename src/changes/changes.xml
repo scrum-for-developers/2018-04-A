@@ -64,8 +64,14 @@
 		</release>
 		<release version="1.5" date="2018-04-12"
 				 description="Last and Final PSD Training release">
-			<action dev="1elf!" type="fix">
+			<action dev="1elf!" type="add">
 				added Borrowing overview 
+			</action>
+			<action dev="1elf!" type="add">
+				clean ISBN inputs
+			</action>
+			<action dev="1elf!" type="add">
+				support ISBN-13
 			</action>
 		</release>
 	</body>
