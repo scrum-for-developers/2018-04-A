@@ -1,0 +1,62 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>&#129412; Worblehat Bookmanager</title>
+<style>
+* {
+    box-sizing:border-box;
+}
+html, body {
+    width:100%;
+    height:100%;
+    overflow:hidden;
+    position:fixed;
+    margin:0;
+    padding:0;
+}
+.table {
+    display:table;
+    width:100%;
+    height:100%;
+    table-layout:initial;
+}
+.row {
+    display:table-row;
+}
+.cell {
+    display:table-cell;
+}
+.cell.menue {
+	width: 350px;
+}
+.header {
+    display:table-header-group;
+    border:1px solid grey;
+}
+</style>
+</head>
+<body>
+<div class='table'>
+    <div class='header'>
+			
+	</div>
+    <div class='row'>
+        <div class='cell menue'>
+        <h1 id="welcome_heading">&#129412; <span th:text="${@environment.getProperty('spring.application.name')}"></span></h1>
+			<ul>
+			    <li><a th:href="@{/bookList}" target="dirtyUnicorn">Show all Books</a></li>
+			    <li><a th:href="@{/insertBooks}" target="dirtyUnicorn">Add a new book</a></li>
+			    <li><a th:href="@{/borrow}" target="dirtyUnicorn">Borrow Book</a></li>
+			    <li><a th:href="@{/returnAllBooks}" target="dirtyUnicorn">Return all Books</a></li>
+			    <li><a th:href="@{/bookListByReturnDate}" target="dirtyUnicorn">Show borrowed books</a></li>
+			    <li><a th:href="@{/showPersonalBookings}" target="dirtyUnicorn">Show personal borrowings</a></li>
+			</ul>       
+        </div>
+        <div class='cell'><iframe src="./home" name="dirtyUnicorn" id="dirtyUnicorn" scrolling="no" frameborder="0"
+    style="position: relative; height: 100%; width: 100%;"></iframe></div>
+    </div>
+</div>
+
+
+</body>
+</html>

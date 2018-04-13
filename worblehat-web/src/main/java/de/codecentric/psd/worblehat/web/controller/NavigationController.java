@@ -20,9 +20,13 @@ public class NavigationController {
         return buildVersion;
     }
 
-	@RequestMapping(value = "/", method = RequestMethod.GET)
+	@RequestMapping(value = "/home", method = RequestMethod.GET)
 	public String home() {
 		return "home";
 	}
-
+	
+	@RequestMapping(value = "/start", method = RequestMethod.GET)
+	public String center() {
+		return "start";
+	}
 }
