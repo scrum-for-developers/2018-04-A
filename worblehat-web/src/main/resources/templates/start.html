@@ -1,62 +1,176 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-<title>&#129412; Worblehat Bookmanager</title>
-<style>
-* {
-    box-sizing:border-box;
+    <title>&#129412; Worblehat Bookmanager</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" rel="stylesheet"/>
+    <style>
+body {
+  overflow-x: hidden;
 }
-html, body {
-    width:100%;
-    height:100%;
-    overflow:hidden;
-    position:fixed;
-    margin:0;
-    padding:0;
+
+#wrapper {
+  padding-left: 0;
+  -webkit-transition: all 0.5s ease;
+  -moz-transition: all 0.5s ease;
+  -o-transition: all 0.5s ease;
+  transition: all 0.5s ease;
 }
-.table {
-    display:table;
-    width:100%;
-    height:100%;
-    table-layout:initial;
+
+#wrapper.toggled {
+  padding-left: 250px;
 }
-.row {
-    display:table-row;
+
+#sidebar-wrapper {
+  z-index: 1000;
+  position: fixed;
+  left: 250px;
+  width: 0;
+  height: 100%;
+  margin-left: -250px;
+  overflow-y: auto;
+  background: #000;
+  -webkit-transition: all 0.5s ease;
+  -moz-transition: all 0.5s ease;
+  -o-transition: all 0.5s ease;
+  transition: all 0.5s ease;
 }
-.cell {
-    display:table-cell;
+
+#wrapper.toggled #sidebar-wrapper {
+  width: 250px;
 }
-.cell.menue {
-	width: 350px;
+
+#page-content-wrapper {
+  width: 100%;
+  position: absolute;
+  padding: 15px;
 }
-.header {
-    display:table-header-group;
-    border:1px solid grey;
+
+#wrapper.toggled #page-content-wrapper {
+  position: absolute;
+  margin-right: -250px;
 }
-</style>
+
+
+/* Sidebar Styles */
+
+.sidebar-nav {
+  position: absolute;
+  top: 0;
+  width: 250px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.sidebar-nav li {
+  text-indent: 20px;
+  line-height: 40px;
+}
+
+.sidebar-nav li a {
+  display: block;
+  text-decoration: none;
+  color: #999999;
+}
+
+.sidebar-nav li a:hover {
+  text-decoration: none;
+  color: #fff;
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.sidebar-nav li a:active, .sidebar-nav li a:focus {
+  text-decoration: none;
+}
+
+.sidebar-nav>.sidebar-brand {
+  height: 65px;
+  font-size: 18px;
+  line-height: 60px;
+}
+
+.sidebar-nav>.sidebar-brand a {
+  color: #999999;
+}
+
+.sidebar-nav>.sidebar-brand a:hover {
+  color: #fff;
+  background: none;
+}
+
+@media(min-width:768px) {
+  #wrapper {
+    padding-left: 0;
+  }
+  #wrapper.toggled {
+    padding-left: 250px;
+  }
+  #sidebar-wrapper {
+    width: 0;
+  }
+  #wrapper.toggled #sidebar-wrapper {
+    width: 250px;
+  }
+  #page-content-wrapper {
+    padding: 20px;
+    position: relative;
+  }
+  #wrapper.toggled #page-content-wrapper {
+    position: relative;
+    margin-right: 0;
+  }
+}
+
+
+
+
+    </style>
 </head>
 <body>
-<div class='table'>
-    <div class='header'>
-			
-	</div>
-    <div class='row'>
-        <div class='cell menue'>
-        <h1 id="welcome_heading">&#129412; <span th:text="${@environment.getProperty('spring.application.name')}"></span></h1>
-			<ul>
-			    <li><a th:href="@{/bookList}" target="dirtyUnicorn">Show all Books</a></li>
-			    <li><a th:href="@{/insertBooks}" target="dirtyUnicorn">Add a new book</a></li>
-			    <li><a th:href="@{/borrow}" target="dirtyUnicorn">Borrow Book</a></li>
-			    <li><a th:href="@{/returnAllBooks}" target="dirtyUnicorn">Return all Books</a></li>
-			    <li><a th:href="@{/bookListByReturnDate}" target="dirtyUnicorn">Show borrowed books</a></li>
-			    <li><a th:href="@{/showPersonalBookings}" target="dirtyUnicorn">Show personal borrowings</a></li>
-			</ul>       
-        </div>
-        <div class='cell'><iframe src="./home" name="dirtyUnicorn" id="dirtyUnicorn" scrolling="no" frameborder="0"
-    style="position: relative; height: 100%; width: 100%;"></iframe></div>
+<div id="wrapper" class="toggled">
+
+
+    <!-- Sidebar -->
+    <div id="sidebar-wrapper">
+        <ul class="sidebar-nav">
+            <li><a th:href="@{/bookList}">Show all Books</a></li>
+            <li><a th:href="@{/insertBooks}">Add a new book</a></li>
+            <li><a th:href="@{/borrow}">Borrow Book</a></li>
+            <li><a th:href="@{/returnAllBooks}">Return all Books</a></li>
+            <li><a th:href="@{/bookListByReturnDate}">Show borrowed books</a></li>
+            <li><a th:href="@{/showPersonalBookings}">Show personal borrowings</a></li>
+        </ul>
     </div>
+    <!-- /#sidebar-wrapper -->
+
+    <!-- Page Content -->
+    <div id="page-content-wrapper">
+        <div class="container-fluid">
+            <h1 id="welcome_heading">&#129412; <span
+                    th:text="${@environment.getProperty('spring.application.name')}"></span></h1>
+            <p>Version: <span th:text="${buildVersion}"></span></p>
+            <a href="#menu-toggle" class="btn btn-secondary" id="menu-toggle">Toggle Menu</a>
+        </div>
+    </div>
+    <!-- /#page-content-wrapper -->
+
 </div>
+<!-- /#wrapper -->
+<script
+        src="https://code.jquery.com/jquery-3.3.1.min.js"
+        integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.bundle.min.js"></script>
+
+<!-- Menu Toggle Script -->
+<script>
+    $("#menu-toggle").click(function(e) {
+        e.preventDefault();
+        $("#wrapper").toggleClass("toggled");
+    });
 
 
+
+</script>
 </body>
 </html>

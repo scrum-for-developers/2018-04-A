@@ -25,7 +25,7 @@ public class NavigationController {
 		return "home";
 	}
 	
-	@RequestMapping(value = "/start", method = RequestMethod.GET)
+	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String center() {
 		return "start";
 	}
