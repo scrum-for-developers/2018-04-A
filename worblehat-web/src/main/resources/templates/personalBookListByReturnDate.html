@@ -1,17 +1,16 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-	<title>Show all Books</title>
+	<title>Show all personal borrowings</title>
 </head>
 <body>
-	<h1>Show all borrowings</h1>
+	<h1>Show all personal borrowings</h1>
 	<table class="bookList">
 	<thead>
 		<tr>
 			<th>Title</th>
 			<th>ISBN</th>
 			<th>ReturnDate</th>
-			<th>Orderer</th>
 		</tr>
 	</thead>
 	<tbody>
@@ -19,7 +18,6 @@
 			<td th:text="${book.title}">Harry Potter</td>
 			<td th:text="${book.isbn}">123456</td>
 			<td th:text="${book?.borrowing?.returnDate}">01.01.2020</td>
-			<td th:text="${book?.borrowing?.borrowerEmailAddress}">someone@codecentric.de</td>
 		</tr>
 	</tbody>
 	</table>

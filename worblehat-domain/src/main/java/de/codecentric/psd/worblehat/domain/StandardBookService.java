@@ -111,6 +111,25 @@ public class StandardBookService implements BookService {
 		}
 		return booklist;
 	}
+	
+	@Override
+	public List<Book> findAllBooksByBorrowDateAndMail(String mail, Boolean directionDESC) {
+		
+		List<Borrowing> borrowingList = null;
+				
+		if (directionDESC) {
+			borrowingList = borrowingRepository.findBorrowingsByBorrowerOrderedByDateDESC(mail);
+		} else {
+			borrowingList = borrowingRepository.findBorrowingsByBorrowerOrderedByDateASC(mail);
+		}
+				
+		List<Book> booklist = new ArrayList<Book>();
+		for (Borrowing borrowing : borrowingList) {
+			
+			booklist.add(borrowing.getBorrowedBook());
+		}
+		return booklist;
+	}
 
 
 }
