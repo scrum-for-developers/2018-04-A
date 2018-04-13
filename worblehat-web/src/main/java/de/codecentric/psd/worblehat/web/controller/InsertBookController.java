@@ -25,59 +25,60 @@ import java.util.Set;
 @RequestMapping("/insertBooks")
 public class InsertBookController {
 
-	private static final Logger LOG = LoggerFactory
-			.getLogger(InsertBookController.class);
+    private static final Logger LOG = LoggerFactory
+            .getLogger(InsertBookController.class);
 
-	private BookService bookService;
+    private BookService bookService;
 
-	@Autowired
-	public InsertBookController(BookService bookService) {
-		this.bookService = bookService;
-	}
+    @Autowired
+    public InsertBookController(BookService bookService) {
+        this.bookService = bookService;
+    }
 
-	@RequestMapping(method = RequestMethod.GET)
-	public void setupForm(ModelMap modelMap) {
-		modelMap.put("bookDataFormData", new BookDataFormData());
-	}
+    @RequestMapping(method = RequestMethod.GET)
+    public void setupForm(ModelMap modelMap) {
+        modelMap.put("bookDataFormData", new BookDataFormData());
+    }
 
-	@RequestMapping(method = RequestMethod.POST)
-	public String processSubmit(@ModelAttribute("bookDataFormData") @Valid BookDataFormData bookDataFormData,
-			BindingResult result) {
+    @RequestMapping(method = RequestMethod.POST)
+    public String processSubmit(@ModelAttribute("bookDataFormData") @Valid BookDataFormData bookDataFormData,
+                                BindingResult result) {
 
-		if (result.hasErrors()) {
-			return "insertBooks";
-		} else {
-			if (isValidBook(bookDataFormData.getTitle(),  bookDataFormData.getAuthor(), bookDataFormData.getEdition(), bookDataFormData.getIsbn())) {
-				bookDataFormData.setDescription(bookDataFormData.getDescription().replaceAll("\n", "<br/>"));
-				Optional<Book> book = bookService.createBook(bookDataFormData.getTitle(), bookDataFormData.getDescription(), bookDataFormData.getAuthor(),
-						bookDataFormData.getEdition(), bookDataFormData.getIsbn(),
-						Integer.parseInt(bookDataFormData.getYearOfPublication()));
-				if (book.isPresent()) {
-					LOG.info("new book instance is created: " + book.get());
-				} else {
-					LOG.debug("failed to create new book with: "+bookDataFormData.toString());
-				}
-				return "redirect:bookList";
-			} else {
-				return "redirect:bookList";
-			}
-		}
-	}
+        if (result.hasErrors()) {
+            return "insertBooks";
+        } else {
+            bookDataFormData.setIsbn(bookDataFormData.getIsbn().replaceAll("\\s+", "").replaceAll("-", ""));
+            if (isValidBook(bookDataFormData.getTitle(), bookDataFormData.getAuthor(), bookDataFormData.getEdition(), bookDataFormData.getIsbn())) {
+                bookDataFormData.setDescription(bookDataFormData.getDescription().replaceAll("\n", "<br/>"));
+                Optional<Book> book = bookService.createBook(bookDataFormData.getTitle(), bookDataFormData.getDescription(), bookDataFormData.getAuthor(),
+                        bookDataFormData.getEdition(), bookDataFormData.getIsbn(),
+                        Integer.parseInt(bookDataFormData.getYearOfPublication()));
+                if (book.isPresent()) {
+                    LOG.info("new book instance is created: " + book.get());
+                } else {
+                    LOG.debug("failed to create new book with: " + bookDataFormData.toString());
+                }
+                return "redirect:bookList";
+            } else {
+                return "redirect:bookList";
+            }
+        }
+    }
 
-	public boolean isValidBook(String title, String author, String edtion, String isbn) {
+    public boolean isValidBook(String title, String author, String edtion, String isbn) {
 
-		Set<Book> books =  bookService.findBooksByIsbn(isbn);
+        Set<Book> books = bookService.findBooksByIsbn(isbn);
 
-		if (books == null || books.isEmpty()) {
-			return true;
-		}
+        if (books == null || books.isEmpty()) {
+            return true;
+        }
 
-		for (Book book : books) {
-			if (!Objects.equals(book.getEdition(), edtion)) {
-				return false;
-			}
-		}
+        for (Book book : books) {
+            if (!Objects.equals(book.getEdition(), edtion)) {
+                return false;
+            }
+        }
 
-		return true;
-	}
+        return true;
+    }
 }
