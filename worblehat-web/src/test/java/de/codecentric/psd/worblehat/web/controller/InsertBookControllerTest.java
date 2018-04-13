@@ -90,6 +90,8 @@ public class InsertBookControllerTest {
 
         String navigateTo = insertBookController.processSubmit(bookDataFormData, bindingResult);
         assertThat(bookDataFormData.getIsbn(), is("123456789X"));
+        TEST_BOOK.setIsbn("isbn");
+        setupFormData();
     }
 
     private void verifyBookIsCreated() {
