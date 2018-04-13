@@ -18,7 +18,7 @@
 		<tr th:each="book : ${books}">
 			<td th:text="${book.title}">Harry Potter</td>
 			<td th:text="${book.isbn}">123456</td>
-			<td th:text="${book?.borrowing?.returnDate}">01.01.2020</td>
+			<td th:text="${#dates.format(book?.borrowing?.returnDate, 'dd-MM-yyyy')}"></td>
 			<td th:text="${book?.borrowing?.borrowerEmailAddress}">someone@codecentric.de</td>
 		</tr>
 	</tbody>
