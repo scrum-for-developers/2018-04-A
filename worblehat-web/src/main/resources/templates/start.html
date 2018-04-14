@@ -169,7 +169,15 @@ body {
         $("#wrapper").toggleClass("toggled");
     });
 
+$('.sidebar-nav a').click(function(){
+  //this makes an ajax call to load the div
+  var loadStringA = $(this).attr('href');
 
+  console.log($(this).attr('href'));
+
+  $('.container-fluid').load($(this).attr('href'));
+  return false;
+});
 
 </script>
 </body>

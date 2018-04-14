@@ -5,25 +5,50 @@
 <body>
 	<h1>Add Book</h1>
 
-	<form th:object="${bookDataFormData}" method="POST">
-			Title:<input type="text" th:field="*{title}" />
-		<span class="error" th:if="${#fields.hasErrors('title')}" th:errors="*{title}"></span>
-		<br />
-			Description:<textarea th:field="*{description}">...</textarea>
-		<span class="error" th:if="${#fields.hasErrors('description')}" th:errors="*{description}"></span>
-		<br />
-			Edition:<input type="text" th:field="*{edition}" />
-		<span class="error" th:if="${#fields.hasErrors('edition')}" th:errors="*{edition}"></span>
-		<br />
-			ISBN:<input type="text" th:field="*{isbn}" />
-		<span class="error" th:if="${#fields.hasErrors('isbn')}" th:errors="*{isbn}"></span>
-		<br />
-			Author:<input type="text" th:field="*{author}" />
-		<span class="error" th:if="${#fields.hasErrors('author')}" th:errors="*{author}"></span>
-		<br />
-			Year:<input type="text" th:field="*{yearOfPublication}" />
-		<span class="error" th:if="${#fields.hasErrors('yearOfPublication')}" th:errors="*{yearOfPublication}"></span>
-		<br />
+	<form th:object="${bookDataFormData}" method="POST" th:action="@{/insertBooks}">
+		<div class="form-group row">
+			<label class="col-2 col-form-label">Title:</label>
+			<div class="col-10">
+				<input class="form-control" type="text" th:field="*{title}" />
+				<span class="error" th:if="${#fields.hasErrors('title')}" th:errors="*{title}"></span>
+			</div>
+		</div>
+		<div class="form-group row">
+			<label class="col-2 col-form-label">Description:</label>
+			<div class="col-10">
+				<textarea class="form-control" th:field="*{description}">...</textarea>
+				<span class="error" th:if="${#fields.hasErrors('description')}" th:errors="*{description}"></span>
+			</div>
+		</div>
+		<div class="form-group row">
+			<label class="col-2 col-form-label">Edition:</label>
+			<div class="col-10">
+				<input type="text" class="form-control" th:field="*{edition}">...</input>
+				<span class="error" th:if="${#fields.hasErrors('edition')}" th:errors="*{edition}"></span>
+			</div>
+		</div>
+		<div class="form-group row">
+			<label class="col-2 col-form-label">ISBN:</label>
+			<div class="col-10">
+				<input type="text" class="form-control" th:field="*{isbn}">...</input>
+				<span class="error" th:if="${#fields.hasErrors('isbn')}" th:errors="*{isbn}"></span>
+			</div>
+		</div>
+		<div class="form-group row">
+			<label class="col-2 col-form-label">Author:</label>
+			<div class="col-10">
+				<input type="text" class="form-control" th:field="*{author}">...</input>
+				<span class="error" th:if="${#fields.hasErrors('author')}" th:errors="*{author}"></span>
+			</div>
+		</div>
+		<div class="form-group row">
+			<label class="col-2 col-form-label">Year:</label>
+			<div class="col-10">
+				<input type="text" class="form-control" th:field="*{yearOfPublication}">...</input>
+				<span class="error" th:if="${#fields.hasErrors('yearOfPublication')}" th:errors="*{yearOfPublication}"></span>
+			</div>
+		</div>
+
 		<input type="submit" id="addBook" value="Add Book" />
 		<hr/>
 		<a th:href="@{/}">Back to Home</a>
